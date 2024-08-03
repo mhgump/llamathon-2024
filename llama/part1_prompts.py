@@ -1,3 +1,6 @@
+from llama.base_prompts import SYSTEM_PROMPT, LLamathonQueryBuilder
+
+
 TEMPLATE = """Help me apply changes to appropriate files.
 
 Read the following commit title, description, and diff.
@@ -89,8 +92,8 @@ def get_prompt(diff: str):
             diff=EXAMPLE_DIFF_1,
             instruction_1=INSTRUCTION_1,
             instruction_2=INSTRUCTION_2,
-            guidelines="\n".join(GUIDELINES)\
-        .add_assistant_prompt(EXAMPLE_RESPONSE))\
+            guidelines="\n".join(GUIDELINES)))\
+        .add_assistant_prompt(EXAMPLE_RESPONSE)\
         .add_user_prompt(EXAMPLE_FEEDBACK)\
         .add_assistant_prompt(EXAMPLE_FINAL_RESPONSE)\
         .add_user_prompt(TEMPLATE.format(
@@ -98,4 +101,4 @@ def get_prompt(diff: str):
             instruction_1=INSTRUCTION_1,
             instruction_2=INSTRUCTION_2,
             guidelines="\n".join(GUIDELINES
-        )).query
+        ))).query

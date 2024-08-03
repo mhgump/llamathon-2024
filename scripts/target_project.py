@@ -51,7 +51,8 @@ def load(git_uri: str, directory: Optional[str]=None) -> TargetProject:
         pass
 
     dependencies = find_requirements(directory)
-    TargetProject(
+    return TargetProject(
         project_name = directory.strip('/').split('/')[-1],
         gir_uri=git_uri,
         dependencies=[detected_requirements_to_str(e) for e in dependencies],
+    )
