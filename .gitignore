@@ -2,3 +2,4 @@
 *KEY
 *TOKEN
 **/__pycache__/
+.env
