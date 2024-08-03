@@ -10,11 +10,8 @@ from pathlib import Path
 from typing import List, Tuple
 
 
-def detected_requirements_to_str(requirements: List[DetectedRequirement]) -> List[Tuple[str, str]]:
-    result = []
-    for req in requirements:
-        result.append((req.name, req.pip_format()))
-    return result
+def detected_requirements_to_str(req: DetectedRequirement) -> Tuple[str, str]:
+    return req.name, req.pip_format()
 
 
 def find_requirements(path: str) -> List[DetectedRequirement]:

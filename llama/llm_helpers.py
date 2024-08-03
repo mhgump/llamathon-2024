@@ -5,7 +5,7 @@ from typing import Dict, List
 
 class LLamathonQueryBuilder:
     def __init__(self):
-        self.query = []
+        self.query: List[Dict[str, str]] = []
 
     def add_system_prompt(self, prompt: str):
         self.query.append({"role": "system", "content": prompt})
