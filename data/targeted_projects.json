@@ -1,15 +1,225 @@
 {
-  "pillow": {
-    "project_name": "python-pillow/Pillow",
-    "commits": [
-      {
-        "commit_id": "da59ad0",
-        "python_version": "3.12"
-      },
-      {
-        "commit_id": "d594f4c",
-        "python_version": "3.11"
-      }
-    ]
-  }
+    "pillow": {
+        "project_name": "python-pillow/Pillow",
+        "commits": [
+            {
+                "python_version": "3.12",
+                "commit_id": "da59ad0"
+            },
+            {
+                "python_version": "3.11",
+                "commit_id": "d594f4c"
+            },
+            {
+                "python_version": "3.10",
+                "commit_id": "8013f13"
+            },
+            {
+                "python_version": "3.9",
+                "commit_id": "235a7d6"
+            },
+            {
+                "python_version": "3.8",
+                "commit_id": "6e0f07b"
+            },
+            {
+                "python_version": "3.7",
+                "commit_id": "c28bf86"
+            },
+            {
+                "python_version": "3.6",
+                "commit_id": "a021d49"
+            },
+            {
+                "python_version": "3.5",
+                "commit_id": "baea361"
+            }
+        ]
+    },
+    "youtube-dl": {
+        "project_name": "ytdl-org/youtube-dl",
+        "commits": [
+            {
+                "python_version": "3.12",
+                "commit_id": "a08f2b7"
+            },
+            {
+                "python_version": "3.9",
+                "commit_id": "a8b3150"
+            }
+        ]
+    },
+    "pytorch": {
+        "project_name": "pytorch/pytorch",
+        "commits": [
+            {
+                "python_version": "3.12",
+                "commit_id": "d990dad"
+            },
+            {
+                "python_version": "3.11",
+                "commit_id": "8ac9b20"
+            },
+            {
+                "python_version": "3.10",
+                "commit_id": "7c98e70"
+            }
+        ]
+    },
+    "django": {
+        "project_name": "django/django",
+        "commits": [
+            {
+                "python_version": "3.12",
+                "commit_id": "dff9657"
+            },
+            {
+                "python_version": "3.11",
+                "commit_id": "7dfd29b"
+            },
+            {
+                "python_version": "3.10",
+                "commit_id": "1b3c0d3"
+            }
+        ]
+    },
+    "fastapi": {
+        "project_name": "fastapi/fastapi",
+        "commits": [
+            {
+                "python_version": "3.11",
+                "commit_id": "10fbfd6"
+            },
+            {
+                "python_version": "3.10",
+                "commit_id": "d08a062"
+            },
+            {
+                "python_version": "3.9",
+                "commit_id": "ab33ba2"
+            }
+        ]
+    },
+    "flask": {
+        "project_name": "pallets/flask",
+        "commits": [
+            {
+                "python_version": "3.13",
+                "commit_id": "9101439"
+            },
+            {
+                "python_version": "3.10",
+                "commit_id": "1f40c77"
+            }
+        ]
+    },
+    "scikit-learn": {
+        "project_name": "scikit-learn/scikit-learn",
+        "commits": [
+            {
+                "python_version": "3.10",
+                "commit_id": "9b03375"
+            },
+            {
+                "python_version": "3.8",
+                "commit_id": "5f3c3f0"
+            }
+        ]
+    },
+    "scrapy": {
+        "project_name": "scrapy/scrapy",
+        "commits": [
+            {
+                "python_version": "3.12",
+                "commit_id": "21b6dc5"
+            },
+            {
+                "python_version": "drop",
+                "commit_id": "2122278"
+            },
+            {
+                "python_version": "3.11",
+                "commit_id": "92f2d75"
+            },
+            {
+                "python_version": "drop",
+                "commit_id": "407562b"
+            },
+            {
+                "python_version": "3.10",
+                "commit_id": "cfff79c"
+            },
+            {
+                "python_version": "3.9",
+                "commit_id": "42e4dbb"
+            },
+            {
+                "python_version": "3.8",
+                "commit_id": "4e939ca"
+            },
+            {
+                "python_version": "3.7",
+                "commit_id": "cdd04df"
+            }
+        ]
+    },
+    "pandas": {
+        "project_name": "pandas-dev/pandas",
+        "commits": [
+            {
+                "python_version": "3.12",
+                "commit_id": "f538741"
+            },
+            {
+                "python_version": "3.11",
+                "commit_id": "8dab54d"
+            },
+            {
+                "python_version": "3.10",
+                "commit_id": "ca60aab"
+            }
+        ]
+    },
+    "airflow": {
+        "project_name": "apache/airflow",
+        "commits": [
+            {
+                "python_version": "3.11",
+                "commit_id": "c5597d1"
+            },
+            {
+                "python_version": "3.10",
+                "commit_id": "4c28c2a"
+            },
+            {
+                "python_version": "3.9",
+                "commit_id": "ce44b62"
+            }
+        ]
+    },
+    "black": {
+        "project_name": "psf/black",
+        "commits": [
+            {
+                "python_version": "3.12",
+                "commit_id": "80a166f"
+            },
+            {
+                "python_version": "3.11",
+                "commit_id": "c0089ef"
+            },
+            {
+                "python_version": "3.10",
+                "commit_id": "3b2a7d1"
+            },
+            {
+                "python_version": "3.9",
+                "commit_id": "dd2f86a"
+            },
+            {
+                "python_version": "3.8",
+                "commit_id": "c53853f"
+            }
+        ]
+    }
 }

@@ -20,7 +20,6 @@ class TargetProject:
     project_name: str
     git_uri: str
     commit: str
-    targeted_files: List[str]
     callsites: List[Tuple[str, str, int]]
     dependencies: List[Tuple[str, str]]
 
@@ -29,7 +28,6 @@ class TargetProject:
             "project_name": self.project_name,
             "git_uri": self.git_uri,
             "commit": self.commit,
-            "targeted_files": self.targeted_files,
             "callsites": [[e[0], e[1], e[2]] for e in self.callsites],
             "dependencies": [[e[0], e[1]] for e in self.dependencies],
         }
@@ -95,13 +93,10 @@ class TargetProjectLoader:
         local_directory = self.clone(project_shortname, project_name, commit_id)
         print("Finding requirements")
         dependencies = find_requirements(local_directory)
-        print("Finding targeted files")
-        targeted_files = self.get_targeted_files(local_directory)
         return TargetProject(
             project_name=project_shortname,
             git_uri=git_uri,
             commit=commit_id,
             dependencies=[detected_requirements_to_str(e) for e in dependencies],
-            targeted_files=targeted_files,
             callsites=[],
         )

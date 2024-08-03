@@ -6,6 +6,10 @@ from typing import Dict, List, Tuple
 
 from src.scripts.target_project import TargetProject, TargetProjectLoader
 
+RAW_TARGETED_PROJECTS = 'data/targeted_projects_raw.csv'
+TARGETED_PROJECTS = 'data/targeted_projects.json'
+PROJECTS = 'data/projects.json'
+
 
 def unpack_project_info(project_info):
     commit_info_list = []
@@ -40,7 +44,7 @@ def load_target_projects(projects: List[Tuple[str, str, str, str]],
     return target_projects
 
 
-def main(source_data_directory: str, target_directory: str, python_version: str):
+def process_source_data(source_data_directory: str, python_version: str):
     """Generate commits for a target project given source commits that may be applicable.
 
     :param source_data_directory: Contains commit data in json files.
@@ -70,9 +74,36 @@ def main(source_data_directory: str, target_directory: str, python_version: str)
     dependencies = []  # TODO: Get these from source_data jsons
 
 
+def get_raw_project_data() -> List[Tuple[str, str, str, str]]:
+    with open(RAW_TARGETED_PROJECTS, 'r') as f:
+        data = f.read().split('\n')[1:]
+        data = [e.split() for e in data if e]
+        return [(e[0], e[1], e[2], e[3]) for e in data]
+
+
+def main(working_directory: str):
+    if not os.path.exists(TARGETED_PROJECTS):
+        raw_project_data = get_raw_project_data()
+        project_data = {}
+        for project_shortname, project_name, commit_id, python_version in raw_project_data:
+            if project_shortname not in project_data:
+                project_data[project_shortname] = {
+                    "project_name": project_name,
+                    "commits": []
+                }
+            project_data[project_shortname]["commits"].append({
+                "python_version": python_version,
+                "commit_id": commit_id
+            })
+        json.dump(project_data, open(TARGETED_PROJECTS, 'w'), indent=4)
+    project_info = json.load(open(TARGETED_PROJECTS, 'r'))
+    project_info = unpack_project_info(project_info)
+    projects = load_target_projects(project_info, _working_directory)
+    json_data = [project.to_json() for project in projects]
+    json.dump(json_data, open("data/projects.json", 'w'), indent=4)
+
+
 if __name__ == "__main__":
     _working_directory = sys.argv[1]
-    _project_info = json.load(open("data/targeted_projects.json", 'r'))
-    _project_info = unpack_project_info(_project_info)
-    _projects = load_target_projects(_project_info, _working_directory)
+    main(_working_directory)
 
