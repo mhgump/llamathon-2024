@@ -1,0 +1,68 @@
+{
+    "numpy/numpy": [
+        {
+            "sha": "d19263ac79fff17e52befa01b912a1b3d5ddfa91",
+            "tags": [
+                "``2. bool | None`` delimiter py",
+                "``3. pytest`` delimiter py",
+                "``3. numpy`` delimiter py",
+                "``1. Optional`` delimiter py",
+                "``2. | None`` delimiter py"
+            ]
+        },
+        {
+            "sha": "c7d7af5ea15898eca3fbcac39bc45d37c19d7c88",
+            "tags": [
+                "``2. .value`` delimiter py",
+                "``1. .s`` delimiter py"
+            ]
+        },
+        {
+            "sha": "644d0be676fa168b9c82c12b660e6a19227fbd84",
+            "tags": [
+                "``2. .value`` delimiter py",
+                "``1. .s`` delimiter py"
+            ]
+        },
+        {
+            "sha": "fb4418d8dc502619a43519677c979efc31448b99",
+            "tags": [
+                "``2. shlex.quote`` delimiter py",
+                "``3. pipes`` delimiter py",
+                "``1. quote`` delimiter py"
+            ]
+        },
+        {
+            "sha": "8c378b0ab8d673ac1e4d4549703af44d521d6c5d",
+            "tags": [
+                "``2. none`` delimiter py",
+                "``1. list()`` delimiter py"
+            ]
+        },
+        {
+            "sha": "a5718226cf0a7666624a06d8eff3da2b207580f6",
+            "tags": [
+                "``1. IOError`` delimiter py",
+                "``2. OSError`` delimiter py",
+                "``3. Visual Studio`` delimiter py"
+            ]
+        }
+    ],
+    "tensorflow/tensorflow": [
+        {
+            "sha": "94ba1867ad0fecee2b520681eefda88b66515bfc",
+            "tags": [
+                "``3. sre_constants`` delimiter py",
+                "``1. sre_constants.error`` delimiter py",
+                "``2. re.error`` delimiter py"
+            ]
+        },
+        {
+            "sha": "eda83a75939f3d592fefc015dfab1f948db44efc",
+            "tags": [
+                "``1. List as PythonList`` delimiter py",
+                "``2. TensorFlow`` delimiter py"
+            ]
+        }
+    ]
+}
