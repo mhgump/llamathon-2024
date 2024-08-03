@@ -4,8 +4,6 @@ import pdb # just for testing.
 import json
 import os
 
-
-
 from typing import List
 from github import Github
 
@@ -30,14 +28,6 @@ def process(input_repos: List[str]):
     return
 
 '''
-{
-    repoName: str, 
-    commitSha: str, 
-    pythonVersion: str, 
-    relevantFunctions: [ str ], 
-    dependencies: [ str ], 
-}
-
 todo exclud ebig commits and files 
 
 tag function 1. 
