@@ -1,4 +1,4 @@
-from llama.base_prompts import SYSTEM_PROMPT, LLamathonQueryBuilder
+from src.llama.base_prompts import SYSTEM_PROMPT, LLamathonQueryBuilder
 
 
 TEMPLATE = """Help me apply changes to appropriate files.

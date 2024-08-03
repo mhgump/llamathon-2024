@@ -1,2 +1,4 @@
 .idea/
 *KEY
+*TOKEN
+**/__pycache__/

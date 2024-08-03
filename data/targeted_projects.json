@@ -1,0 +1,15 @@
+{
+  "pillow": {
+    "project_name": "python-pillow/Pillow",
+    "commits": [
+      {
+        "commit_id": "da59ad0",
+        "python_version": "3.12"
+      },
+      {
+        "commit_id": "d594f4c",
+        "python_version": "3.11"
+      }
+    ]
+  }
+}
