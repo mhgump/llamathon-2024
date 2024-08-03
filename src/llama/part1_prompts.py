@@ -15,28 +15,23 @@ Follow these guidelines:
 {guidelines}"""
 
 INSTRUCTION_1 = """
-I am searching through other files to find files that need the above fix to be applied.
-Help me identify files where the above change is relevant.
-To do this, identify snippets of the above code that would ONLY appear when the above change is applicable.
+This diff was applied when upgrading a python version. Help me identify snippets of the code
+that are relevant to the version upgrade. This could include things like relevant dependencies and changing function names. Unchanged lines in the diff is unlikely to be relevant. Even in a changed line, unchanged text is still unlikely to be relevant. 
 """.replace("\n", " ").strip()
 
 INSTRUCTION_2 = """
-In other words, look for snippets that are related to the fix being performed.
-Remove details that are only related to the specifics above the project and not related to the fix.
+Remove details that are only related to the specifics of this project and not related to the version upgrade.
 I will use the snippets to perform a regex search.
 """.replace("\n", " ").strip()
 
 GUIDELINES = [
     "Respond as a numbered list. Each item should be enclosed in back quotes ``.",
     "Do not include snippets that do not appear in the above code.",
-    "Do not include any explanations.",
+    "Do not include any explanations or text outside of the numbered list.",
     "Each snippet you suggest should appear exactly as is in the above code.",
 ]
 
-EXAMPLE_DIFF_1 = """Subject: [PATCH] TST,TYP: Fix a python 3.11 failure for the `GenericAlias` tests
-
---- a/numpy/typing/tests/test_generic_alias.py
-+++ b/numpy/typing/tests/test_generic_alias.py
+EXAMPLE_DIFF_1 = """
 @@ -20,11 +20,11 @@
  if sys.version_info >= (3, 9):
      DType_ref = types.GenericAlias(np.dtype, (ScalarType,))
@@ -46,37 +41,35 @@ EXAMPLE_DIFF_1 = """Subject: [PATCH] TST,TYP: Fix a python 3.11 failure for the 
  else:
      DType_ref = Any
      NDArray_ref = Any
+     # This code is only relevant for dependency sylvie. 
 -    FuncType = Callable[[_GenericAlias], Any]
 +    FuncType = Callable[["_GenericAlias"], Any]
+ 
+ GETATTR_NAMES = sorted(set(dir(np.ndarray)) - _GenericAlias._ATTR_EXCEPTIONS)
+ """
 
- GETATTR_NAMES = sorted(set(dir(np.ndarray)) - _GenericAlias._ATTR_EXCEPTIONS)"""
+EXAMPLE_RESPONSE_1 = """Here is the list of snippets that you can use to identify files where the above fix needs to be applied:
 
-EXAMPLE_RESPONSE = """Here is the list of snippets that you can use to identify files where the above fix needs to be applied:
+``1. sys.version_info >= (3, 9)``
+``2. FuncType = Callable[["_GenericAlias | types.GenericAlias"], Any]``
+``3. FuncType = Callable[["_GenericAlias"], Any]``
+"""
 
-1. `types.GenericAlias`
-2. `Callable[[Union[_GenericAlias, types.GenericAlias]], Any]`
-3. `_GenericAlias`
-4. `_GenericAlias._ATTR_EXCEPTIONS`
-5. `types.GenericAlias(np.dtype, (ScalarType,))`"""
+EXAMPLE_FEEDBACK_1 = """I will provide my feedback to the above suggestions. Afterwards, update your suggestions to the corrected final response.
 
-EXAMPLE_FEEDBACK = """I will provide my feedback to the above suggestions. Afterwards, update your suggestions to the corrected final response.
+``1. sys.version_info >= (3, 9)``
+This is a bad solution as it is not relevant to the upgrade and it occurs in an unchanged line. 
 
-1. `types.GenericAlias`
-This is a correct suggestion.
+``2. FuncType = Callable[["_GenericAlias | types.GenericAlias"], Any]``
+This is a bad solution as it includes project specific changes such as Callable, Any, and the or | operator. Instead we should suggest _GenericAlias and types.GenericAlias separately. 
 
-2. `Callable[[Union[_GenericAlias, types.GenericAlias]], Any]`
-This includes specifics of the project and is not directly related to the fix. For example the usage of `Callable` and `Union`
+``3. FuncType = Callable[["_GenericAlias"], Any]``
+This is a bad solution as it includes project specific changes such as Callable, Any, and the or | operator. Instead we should suggest just _GenericAlias.
 
-3. `_GenericAlias`
-This is a correct suggestion.
+Additionally, you left out an important suggestion for dependency sylvie. As mentioned, we are interested in suggesting things related to dependencies. 
+"""
 
-4. `_GenericAlias._ATTR_EXCEPTIONS`
-This does not appear in the changed lines so it is not likely to be relevant.
-
-5. `types.GenericAlias(np.dtype, (ScalarType,))`
-This does not appear in the changed lines so it is not likely to be relevant."""
-
-EXAMPLE_FINAL_RESPONSE = """Thank you for the feedback! Based on your input, I will update my suggestions:
+EXAMPLE_FINAL_RESPONSE_1 = """Thank you for the feedback! Based on your input, I will update my suggestions:
 
 1. `types.GenericAlias`
 2. `_GenericAlias`
@@ -84,6 +77,9 @@ EXAMPLE_FINAL_RESPONSE = """Thank you for the feedback! Based on your input, I w
 These two snippets are directly related to the fix and can be used to identify files where the same fix needs to be applied.
 """
 
+
+from llama.llm_helpers import LLamathonQueryBuilder 
+from llama.base_prompts import SYSTEM_PROMPT
 
 def get_prompt(diff: str):
     return LLamathonQueryBuilder()\
@@ -93,9 +89,9 @@ def get_prompt(diff: str):
             instruction_1=INSTRUCTION_1,
             instruction_2=INSTRUCTION_2,
             guidelines="\n".join(GUIDELINES)))\
-        .add_assistant_prompt(EXAMPLE_RESPONSE)\
-        .add_user_prompt(EXAMPLE_FEEDBACK)\
-        .add_assistant_prompt(EXAMPLE_FINAL_RESPONSE)\
+        .add_assistant_prompt(EXAMPLE_RESPONSE_1)\
+        .add_user_prompt(EXAMPLE_FEEDBACK_1)\
+        .add_assistant_prompt(EXAMPLE_FINAL_RESPONSE_1)\
         .add_user_prompt(TEMPLATE.format(
             diff=diff,
             instruction_1=INSTRUCTION_1,

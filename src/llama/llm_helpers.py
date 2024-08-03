@@ -11,12 +11,14 @@ class SupportedClients(Enum):
 
 class SupportedModels(Enum):
     LLAMA31_70b = "llama31_70b"
+    LLAMA3_70b = "llama3-70b-8192"
 
 
 class LLamathonClient:
     MODEL_ID_LOOKUP = {
         SupportedClients.GROQ.value: {
             SupportedModels.LLAMA31_70b.value: "llama-3.1-70b-versatile",
+            SupportedModels.LLAMA3_70b.value: "llama3-70b-8192", 
         }
     }
 

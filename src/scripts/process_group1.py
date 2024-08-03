@@ -6,12 +6,24 @@ import os
 
 from typing import List
 from github import Github
+from llama import part1_prompts
+from llama import llm_helpers
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 OUTPUT_DIR = f"{current_dir}/output"
 
 # Don't need auth because we're only looking at public projects. 
-github = Github() # jk, we need a token to not get rate limited
+github_token = open("GITHUB_TOKEN", "r").read().strip()
+github = None
+if (not github_token):
+    print("Missing github token. Will proceed without auth, but may run into rate limits.")
+    github = Github()
+else:
+    github = Github(github_token)
+
+llama = llm_helpers.LLamathonClient()
+llama.load_groq_client()
+llama.set_model(llm_helpers.SupportedModels.LLAMA3_70b)
 
 """Process all given repos and write the output to OUTPUT_DIR."""
 def process(input_repos: List[str]): 
@@ -35,6 +47,8 @@ tag function 1.
 
 2. 
 Go through all the python code and pull out functions 
+
+^ jk dont need to do, we'll use llama 
 
 mb before we even look in the repo, do a github search of github strings for the python regex 
 
@@ -76,26 +90,29 @@ def check_commit_diff(repo, commit):
         if not file.filename.endswith('.py'): # i think this is wrong, need at least requirements.txt diff right 
             continue 
         
+        query = part1_prompts.get_prompt(file.patch)
+        print(query)
+        result = llama.get(query)        
         fileDiffs.append({
             "filename": file.filename, 
-            "diffs": extract_changed_lines(file.patch),
+            "tags": result.content.split('\n'), 
         })
     return fileDiffs
 
 """Parse out only the changed lines from a commit diff."""
-def extract_changed_lines(patch: str):
-    changed_lines = {'added': [], 'removed': []}
+# def extract_changed_lines(patch: str):
+#     changed_lines = {'added': [], 'removed': []}
     
-    # Split the patch into lines
-    lines = patch.splitlines()
+#     # Split the patch into lines
+#     lines = patch.splitlines()
     
-    for line in lines:
-        if line.startswith('+') and not line.startswith('+++'):
-            changed_lines['added'].append(line[1:].strip())
-        elif line.startswith('-') and not line.startswith('---'):
-            changed_lines['removed'].append(line[1:].strip())
+#     for line in lines:
+#         if line.startswith('+') and not line.startswith('+++'):
+#             changed_lines['added'].append(line[1:].strip())
+#         elif line.startswith('-') and not line.startswith('---'):
+#             changed_lines['removed'].append(line[1:].strip())
     
-    return changed_lines
+#     return changed_lines
 
 def contains_python_version(text): 
     # Matches python followed by something semver like, case-insensitive. 
