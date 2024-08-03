@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "llamathon-2024"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+certifi = "^2024.7.4"
+cffi = "^1.16.0"
+charset-normalizer = "^3.3.2"
+click = "^8.1.7"
+cryptography = "^43.0.0"
+idna = "^3.7"
+pygithub = "^2.3.0"
+pyjwt = "^2.9.0"
+pynacl = "^1.5.0"
+requests = "^2.32.3"
+typing-extensions = "^4.12.2"
+urllib3 = "^2.2.2"
+wrapt = "^1.16.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
