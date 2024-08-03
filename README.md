@@ -1,4 +1,4 @@
-# Llamathon 2024
+# Ligma Llama
 
 ```
 poetry install
