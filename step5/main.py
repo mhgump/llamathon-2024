@@ -3,6 +3,7 @@ from groq import Groq
 from dotenv import load_dotenv
 import re
 import json
+import difflib
 
 def chat_with_groq(client, prompt, model, response_format):
     completion = client.chat.completions.create(
@@ -39,6 +40,35 @@ def extract_code_block(text):
         return match.group(1).strip()
     return text.strip()  # If no code block is found, return the stripped text
 
+def create_patch_file(original_content, updated_content):
+    original_lines = original_content.splitlines(keepends=True)
+    updated_lines = updated_content.splitlines(keepends=True)
+    
+    diff = difflib.unified_diff(original_lines, updated_lines, fromfile='requirements.txt', tofile='requirements.txt')
+    
+    with open('requirements.patch', 'w') as f:
+        f.writelines(diff)
+
+def apply_patch():
+    with open('requirements.patch', 'r') as patch_file:
+        patch_content = patch_file.read()
+    
+    # Apply the patch manually
+    with open('requirements.txt', 'r') as f:
+        original_content = f.read()
+    
+    updated_content = original_content
+    for line in patch_content.split('\n'):
+        if line.startswith('+') and not line.startswith('+++'):
+            updated_content += line[1:] + '\n'
+        elif line.startswith('-') and not line.startswith('---'):
+            updated_content = updated_content.replace(line[1:] + '\n', '')
+    
+    with open('requirements.txt', 'w') as f:
+        f.write(updated_content)
+    
+    print("Patch applied successfully")
+
 # Use the Llama3 70b model
 model = "llama3-70b-8192"
 
@@ -63,11 +93,14 @@ updated_requirements = update_requirements(client, commits_json, current_require
 # Extract only the content within the code block
 extracted_requirements = extract_code_block(updated_requirements)
 
-# Print the updated requirements
-print("\nUpdated requirements.txt")
+# Create patch file
+create_patch_file(current_requirements, extracted_requirements)
 
-# Optionally, save the updated requirements to a file
-with open('updated_requirements.txt', 'w') as file:
-    file.write(extracted_requirements)
+print("\nPatch file 'requirements.patch' has been created.")
 
-print("\nUpdated requirements have been saved to 'updated_requirements.txt'")
+# Apply the patch
+apply_patch()
+
+# Clean up
+os.remove('requirements.patch')
+print("\nPatch file has been removed.")
