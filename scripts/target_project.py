@@ -30,8 +30,15 @@ class TargetProject:
             "dependencies": [[e[0], e[1]] for e in self.dependencies],
         }
 
+    def string_match_search(self, segments: List[str]) -> List[Tuple[int, str, int]]:
+        """Find all files in a directory that contain any of the provided segments.
 
-def func(project_directory: str):
+        :param segments:
+        :return: List of tuples containing segment index, file name, and line number.
+        """
+
+
+def load(project_directory: str) -> TargetProject:
     """
 
     :param project_directory:

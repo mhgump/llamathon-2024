@@ -1,4 +1,3 @@
-
 from requirements_detector import from_requirements_txt
 from requirements_detector import from_requirements_dir
 from requirements_detector import from_requirements_blob
@@ -8,6 +7,8 @@ from requirements_detector import CouldNotParseRequirements
 from requirements_detector import RequirementsNotFound
 from requirements_detector.requirement import DetectedRequirement
 from pathlib import Path
+from typing import List, Tuple
+
 
 def detected_requirements_to_str(requirements: List[DetectedRequirement]) -> List[Tuple[str, str]]:
     result = []
