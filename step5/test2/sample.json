@@ -8,32 +8,13 @@
         "tensorflow/examples/custom_ops_doc/multiplex_1/multiplex_1_test.py": [
           {
             "line_number": 74,
-            "old_code": "r'^a_values and b_values must have the same shape. '",
-            "new_code": "r'(?s)^a and b must have the same shape. '"
+            "old_code": "r'(a_values and b_values must have the same shape. '",
+            "new_code": "r'(?s)(a_values and b_values must have the same shape. '"
           },
           {
             "line_number": 75,
-            "old_code": "r'^a_values shape: \\[\\] b_values shape: \\[\\].* '",
-            "new_code": "r'a shape: \\[\\] b shape: \\[\\].* '"
-          }
-        ],
-        "tensorflow/examples/custom_ops_doc/multiplex_2/multiplex_2_test.py": [
-          {
-            "line_number": 74,
-            "old_code": "r'^a and b must have the same shape. '",
-            "new_code": "r'(?s)^a and b must have the same shape. '"
-          },
-          {
-            "line_number": 75,
-            "old_code": "r'a shape: \\[\\] b shape: \\[\\].* '",
-            "new_code": "r'a shape: \\[\\] b shape: \\[\\].* '"
-          }
-        ],
-        "tensorflow/python/kernel_tests/math_ops/bincount_op_test.py": [
-          {
-            "line_number": 141,
-            "old_code": "r'Shape must be rank 0 but is rank 1(1?)*.bincount'",
-            "new_code": "r'(?s)^Shape must be rank 0 but is rank 1(?s).*bincount'"
+            "old_code": "r'a_values shape: \\[5\\] b_values shape: \\[2\\](?s).* '",
+            "new_code": "r'a_values shape: \\[5\\] b_values shape: \\[2\\].* '"
           }
         ]
       }
