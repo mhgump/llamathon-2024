@@ -1,3 +1,5 @@
+import json
+import requests
 from requirements_detector import from_requirements_txt
 from requirements_detector import from_requirements_dir
 from requirements_detector import from_requirements_blob
@@ -8,6 +10,7 @@ from requirements_detector import RequirementsNotFound
 from requirements_detector.requirement import DetectedRequirement
 from pathlib import Path
 from typing import List, Tuple
+import urllib.parse
 
 
 def detected_requirements_to_str(req: DetectedRequirement) -> Tuple[str, str]:
@@ -61,3 +64,17 @@ def find_requirements(path: str) -> List[DetectedRequirement]:
         return requirements
 
     return []
+
+
+def github_search(snippet, extension):
+    token = ""
+    query = f'"sys.version[:3]"'
+    urlargs = urllib.parse.urlencode({'q': query})
+    url = f"https://github.com/search?{urlargs}"
+
+    headers = {
+        'Authorization': f'Token {token}'
+    }
+    response = requests.request("GET", url, headers=headers)
+    return json.loads(response.text)
+

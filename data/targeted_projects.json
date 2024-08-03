@@ -221,5 +221,39 @@
                 "commit_id": "c53853f"
             }
         ]
+    },
+    "numpy": {
+        "project_name": "numpy/numpy",
+        "commits": [
+            {
+                "python_version": "3.11",
+                "commit_id": "db4f439"
+            },
+            {
+                "python_version": "3.10",
+                "commit_id": "54c52f1"
+            },
+            {
+                "python_version": "3.9",
+                "commit_id": "b235f9e"
+            },
+            {
+                "python_version": "3.8",
+                "commit_id": "92ebe1e"
+            },
+            {
+                "python_version": "3.7",
+                "commit_id": "ccfbcc1"
+            }
+        ]
+    },
+    "sc2reader": {
+        "project_name": "GraylinKim/sc2reader",
+        "commits": [
+            {
+                "python_version": "3.3",
+                "commit_id": "d69feb4"
+            }
+        ]
     }
 }

@@ -41,3 +41,9 @@ black	psf/black	c0089ef	3.11
 black	psf/black	3b2a7d1	3.10
 black	psf/black	dd2f86a	3.9
 black	psf/black	c53853f	3.8
+numpy	numpy/numpy	db4f439	3.11
+numpy	numpy/numpy	54c52f1	3.10
+numpy	numpy/numpy	b235f9e	3.9
+numpy	numpy/numpy	92ebe1e	3.8
+numpy	numpy/numpy	ccfbcc1	3.7
+sc2reader GraylinKim/sc2reader d69feb4 3.3

@@ -17,6 +17,7 @@ from src.scripts.helpers import detected_requirements_to_str, find_requirements
 
 @dataclass
 class TargetProject:
+    project_shortname: str
     project_name: str
     git_uri: str
     commit: str
@@ -25,6 +26,7 @@ class TargetProject:
 
     def to_json(self):
         return {
+            "project_shortname": self.project_shortname,
             "project_name": self.project_name,
             "git_uri": self.git_uri,
             "commit": self.commit,
@@ -94,7 +96,8 @@ class TargetProjectLoader:
         print("Finding requirements")
         dependencies = find_requirements(local_directory)
         return TargetProject(
-            project_name=project_shortname,
+            project_shortname=project_shortname,
+            project_name=project_name,
             git_uri=git_uri,
             commit=commit_id,
             dependencies=[detected_requirements_to_str(e) for e in dependencies],
