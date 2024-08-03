@@ -13,7 +13,7 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 OUTPUT_DIR = f"{current_dir}/output"
 
 # Don't need auth because we're only looking at public projects. 
-github = Github() # jk
+github = Github() # jk, we need a token to not get rate limited
 
 """Process all given repos and write the output to OUTPUT_DIR."""
 def process(input_repos: List[str]): 
@@ -24,7 +24,10 @@ def process(input_repos: List[str]):
         repo_info = extract_repo_info(repo); 
         info.append(repo_info)
        
-     # TODO write output to some json output dir. 
+    file_path = f'{OUTPUT_DIR}/group1.json'
+    with open(file_path, 'w') as file:
+        json.dump(info, file, indent=4)
+    return
 
 '''
 {
@@ -42,6 +45,8 @@ tag function 1.
 
 2. 
 Go through all the python code and pull out functions 
+
+mb before we even look in the repo, do a github search of github strings for the python regex 
 
 
 '''
@@ -68,12 +73,7 @@ def extract_repo_info(repo):
         commit_info["versions"] = list(versions)
         commit_info["fileDiffs"] = check_commit_diff(repo, commit)
         repo_info["commits"].append(commit_info)
-        
-
-    file_path = f'{OUTPUT_DIR}/group1.json'
-    with open(file_path, 'w') as file:
-        json.dump(repo_info, file, indent=4)
-    return
+    return repo_info
 
 def check_commit_diff(repo, commit):
     parent_commit = commit.parents[0] if commit.parents else None
@@ -112,9 +112,6 @@ def contains_python_version(text):
     pattern = re.compile(r'\bPython\s+(\d+\.\d+(?:\.\d+)?)\b', re.IGNORECASE)
     matches = pattern.findall(text)
     return set(matches)
-
-def write_info(): 
-    return
 
 def main():
     parser = argparse.ArgumentParser(description="Process group 1 type repos")
