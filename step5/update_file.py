@@ -130,3 +130,5 @@ if __name__ == "__main__":
     args = parser.parse_args()
     
     main(args.file_to_update, args.json_file)
+
+# python update_file.py /Users/Avery-Symphonic/Repos/pip-api/pip_api/_vendor/pyparsing.py /Users/Avery-Symphonic/Repos/llamathon-2024/step5/test3/sample.json
