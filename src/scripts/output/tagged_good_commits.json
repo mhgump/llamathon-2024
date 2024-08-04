@@ -50,5 +50,82 @@
                 ["list[", "py"]
             ]
         }
+    ],
+    "python-pillow/Pillow": [
+        {
+            "sha": "296050f3823c4648e6e7eb351e433343eddc9cee",
+            "tags": [
+                "``2. None`` delimiter py",
+                "``1. cast`` delimiter py"
+            ]
+        },
+        {
+            "sha": "bb8718e58162cdcd6a9b80eca45f7b2c8321bca9",
+            "tags": [
+                "``2. Sequence`` delimiter py",
+                "``1. cast`` delimiter py"
+            ]
+        },
+        {
+            "sha": "ef35d7926439e6fe8c36abc0846f859aaf3a893d",
+            "tags": [
+                "``2. None`` delimiter py",
+                "``1. cast`` delimiter py"
+            ]
+        },
+        {
+            "sha": "5d19151cd31951754dc284db7434c4e6e7fbc240",
+            "tags": [
+                "``1. Optional`` delimiter py",
+                "``3. numpy`` delimiter py",
+                "``2. str | None`` delimiter py"
+            ]
+        }
+    ],
+    "ytdl-org/youtube-dl": [
+        {
+            "sha": "2f56caf0835786fa5af92da428ef90a530d90f26",
+            "tags": [
+                "``3. yandex.ru``` delimiter py",
+                "``2. ('''`` delimiter py",
+                "``1. b'''`` delimiter py"
+            ]
+        },
+        {
+            "sha": "18806e3b6b95d03c773c89e465e1b28b2f12a618",
+            "tags": [
+                "``1. copy`` delimiter py",
+                "``2. url`` delimiter py"
+            ]
+        },
+        {
+            "sha": "c989bdbef8fdcfd38d51b987a4c745479d02e2f2",
+            "tags": [
+                "``1. .encode('utf-8')`` delimiter py",
+                "``2. binascii.unhexlify`` delimiter py"
+            ]
+        },
+        {
+            "sha": "011da618bdb907cbe02aacefba421dad4cf49a4d",
+            "tags": [
+                "``2. compat_kwargs`` delimiter py",
+                "``1. **cookie`` delimiter py"
+            ]
+        },
+        {
+            "sha": "fee00b3884922f6cb44926349df788d0fc589811",
+            "tags": [
+                "``2. compat_kwargs`` delimiter py",
+                "``3. viu.com`` delimiter py",
+                "``1. **kwargs`` delimiter py"
+            ]
+        },
+        {
+            "sha": "2d2132ac6e75932c9c7e6c143f20156482043729",
+            "tags": [
+                "``1. **compat_kwargs`` delimiter py",
+                "``2. xml.etree.ElementTree`` delimiter py"
+            ]
+        }
     ]
 }

@@ -1,0 +1,14 @@
+{
+    "numpy/numpy": [
+        "d19263ac79fff17e52befa01b912a1b3d5ddfa91",
+        "c7d7af5ea15898eca3fbcac39bc45d37c19d7c88",
+        "644d0be676fa168b9c82c12b660e6a19227fbd84",
+        "fb4418d8dc502619a43519677c979efc31448b99",
+        "8c378b0ab8d673ac1e4d4549703af44d521d6c5d",
+        "a5718226cf0a7666624a06d8eff3da2b207580f6"
+    ],
+    "tensorflow/tensorflow": [
+        "94ba1867ad0fecee2b520681eefda88b66515bfc",
+        "eda83a75939f3d592fefc015dfab1f948db44efc"
+    ]
+}
