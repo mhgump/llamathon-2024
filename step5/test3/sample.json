@@ -1,0 +1,23 @@
+{
+  "project": "tensorflow",
+  "upgrade_commits": [
+    {
+      "commit_hash": "unknown",
+      "message": "Remove unused import and refactor error handling in regex compilation",
+      "changes": {
+        "tensorflow/python/debug/cli/debugger_cli_common.py": [
+          {
+            "line_number": 19,
+            "old_code": "import re_constants",
+            "new_code": ""
+          },
+          {
+            "line_number": 405,
+            "old_code": "except sre_constants.error:",
+            "new_code": "except re.error:"
+          }
+        ]
+      }
+    }
+  ]
+}
