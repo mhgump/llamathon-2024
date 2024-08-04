@@ -1,5 +1,10 @@
-from src.llama.base_prompts import SYSTEM_PROMPT, LLamathonQueryBuilder
+from src.llama.base_prompts import LLamathonQueryBuilder
 
+
+SYSTEM_PROMPT = """Act as an expert code analyst.
+Answer questions about the supplied code.
+
+Always reply to the user in the same language they are using."""
 
 TEMPLATE = """Help me apply changes to appropriate files.
 
@@ -77,9 +82,6 @@ EXAMPLE_FINAL_RESPONSE_1 = """Thank you for the feedback! Based on your input, I
 These two snippets are directly related to the fix and can be used to identify files where the same fix needs to be applied.
 """
 
-
-from llama.llm_helpers import LLamathonQueryBuilder 
-from llama.base_prompts import SYSTEM_PROMPT
 
 def get_prompt(diff: str):
     return LLamathonQueryBuilder()\

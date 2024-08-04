@@ -1,12 +1,6 @@
 from typing import Dict, List
 
 
-SYSTEM_PROMPT = """Act as an expert code analyst.
-Answer questions about the supplied code.
-
-Always reply to the user in the same language they are using."""
-
-
 class LLamathonQueryBuilder:
     def __init__(self):
         self.query: List[Dict[str, str]] = []
