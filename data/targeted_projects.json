@@ -255,5 +255,14 @@
                 "commit_id": "d69feb4"
             }
         ]
+    },
+    "pipapi": {
+        "project_name": "di/pip-api",
+        "commits": [
+            {
+                "python_version": "3.10",
+                "commit_id": "3e8221c"
+            }
+        ]
     }
 }

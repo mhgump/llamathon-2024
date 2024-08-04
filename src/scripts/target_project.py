@@ -20,7 +20,8 @@ class TargetProject:
     project_shortname: str
     project_name: str
     git_uri: str
-    commit: str
+    commit_id: str
+    python_version: str
     callsites: List[Tuple[str, str, int]]
     dependencies: List[Tuple[str, str]]
 
@@ -29,7 +30,8 @@ class TargetProject:
             "project_shortname": self.project_shortname,
             "project_name": self.project_name,
             "git_uri": self.git_uri,
-            "commit": self.commit,
+            "commit_id": self.commit_id,
+            "python_version": self.python_version,
             "callsites": [[e[0], e[1], e[2]] for e in self.callsites],
             "dependencies": [[e[0], e[1]] for e in self.dependencies],
         }
@@ -90,6 +92,7 @@ class TargetProjectLoader:
     def load(self,
              project_shortname: str,
              project_name: str,
+             python_version: str,
              commit_id: str) -> TargetProject:
         git_uri = self._github_client.get_repo(project_name).git_url
         local_directory = self.clone(project_shortname, project_name, commit_id)
@@ -99,7 +102,8 @@ class TargetProjectLoader:
             project_shortname=project_shortname,
             project_name=project_name,
             git_uri=git_uri,
-            commit=commit_id,
+            commit_id=commit_id,
+            python_version=python_version,
             dependencies=[detected_requirements_to_str(e) for e in dependencies],
             callsites=[],
         )

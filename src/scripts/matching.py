@@ -7,6 +7,16 @@ from src.scripts.process_target_projects import PROJECTS
 from src.scripts.target_project import TargetProjectLoader
 
 
+def find_all_matches(content: str, snippet: str):
+    linenumbers = []
+    next_loc = content.find(snippet)
+    while next_loc != -1:
+        linenumbers.append(content.count('\n', 0, next_loc))
+        content = content[next_loc:]
+        next_loc = content.find(snippet, next_loc + 1)
+    return linenumbers
+
+
 def match_snippet(working_directory: str,
                   project_shortname: str,
                   python_version: str,
@@ -38,10 +48,9 @@ def match_snippet(working_directory: str,
     matched_files = []
     for filename in extension_matched_files:
         with open(filename, 'r') as f:
-            content = f.read()
-            if snippet in content:
-                print(f"Found snippet in {filename}")
-                matched_files.append((filename, ))
+            for linenumber in find_all_matches(f.read(), snippet):
+                matched_files.append((filename, linenumber))
+    print(matched_files)
 
 
 if __name__ == '__main__':

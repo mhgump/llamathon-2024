@@ -35,11 +35,12 @@ def load_target_projects(projects: List[Tuple[str, str, str, str]],
     """
     target_projects = []
     loader = TargetProjectLoader(working_directory)
-    for project_shortname, project_name, _, commit_id in projects:
+    for project_shortname, project_name, python_version, commit_id in projects:
         target_projects.append(loader.load(
             project_shortname=project_shortname,
             project_name=project_name,
             commit_id=commit_id,
+            python_version=python_version,
         ))
     return target_projects
 
